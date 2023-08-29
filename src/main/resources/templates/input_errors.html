@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Erros</title>
+</head>
+<body>
+    <h1>Erros</h1>
+    
+    <ul>
+        <li th:each="error : ${validationErrors}">
+            <span th:text="${error.defaultMessage}"></span>
+        </li>
+    </ul>
+    
+    <a th:href="@{/prematricula/form}">Voltar</a>
+</body>
+</html>

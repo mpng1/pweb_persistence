@@ -37,22 +37,24 @@ public class PreMatriculaController {
         return "lista";
     }
 	
-	@PostMapping("novo")
-	public String novo(@Valid PreMatriculaDto requisicao, BindingResult result) {
-		if(result.hasErrors()) {
-			return "redirect:form";
-		}
-		
+    @PostMapping("novo")
+    public String novo(@Valid PreMatriculaDto requisicao, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("validationErrors", result.getAllErrors());
+            return "input_errors";
+        }
+
         if (!isValidBrazilianPhoneNumber(requisicao.getTelefone())) {
             result.rejectValue("telefone", "Invalid telefone number");
-            return "form";
+            model.addAttribute("validationErrors", result.getAllErrors());
+            return "input_errors";
         }
-		
-		PreMatricula prematricula = requisicao.toPreMatricula();
-		preMatriculaRepository.save(prematricula);
-		
-		return "redirect:lista";
-	}
+
+        PreMatricula prematricula = requisicao.toPreMatricula();
+        preMatriculaRepository.save(prematricula);
+
+        return "redirect:lista";
+    }
 	
 	private boolean isValidBrazilianPhoneNumber(String telefone) {
 	    
