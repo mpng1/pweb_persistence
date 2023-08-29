@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	  <meta charset="UTF-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+      <title>Pre-Matriculas</title>
+</head>
+<body>
+    <h1>Pre-Matriculas Efetivadas</h1>
+    <p>Total de pre-matriculas: <span th:text="${preMatriculas.size()}"></span></p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome do Aluno</th>
+                <th>Série</th>
+                <th>Turno</th>
+                <th>Extracurriculares</th>
+                <th>Data de nascimento</th>
+                <th>Nome da mãe</th>
+                <th>Nome do pai</th>
+                <th>Telefone</th>
+                <th>Email</th>                
+            </tr>
+        </thead>
+        <tbody>        
+            <tr th:each="preMatricula : ${preMatriculas}">
+                <td th:text="${preMatricula.id}"></td>
+                <td th:text="${preMatricula.nomedoaluno}"></td>
+                <td th:text="${preMatricula.serie}"></td>
+                <td th:text="${preMatricula.turno}"></td>
+                <td th:text="${preMatricula.extracurriculares}"></td>
+                <td th:text="${preMatricula.nascimento}"></td>
+                <td th:text="${preMatricula.nomedamae}"></td>
+                <td th:text="${preMatricula.nomedopai}"></td>
+                <td th:text="${preMatricula.telefone}"></td>
+                <td th:text="${preMatricula.email}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
